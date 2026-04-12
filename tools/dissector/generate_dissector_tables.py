@@ -21,12 +21,31 @@ import textwrap
 from datetime import date
 from pathlib import Path
 
-# Resolve paths relative to this script
+# Resolve paths — the glossary and codec live in blaueis-libmidea,
+# expected to be checked out as a sibling of this repo:
+#   some-dir/
+#   ├── blaueis-libmidea/
+#   └── blaueis-hvacshark/    (this repo)
+#
+# If blaueis-libmidea is pip-installed, the import works directly.
+# Otherwise, we add the sibling path so it can be found.
 SCRIPT_DIR = Path(__file__).resolve().parent
-GLOSSARY_DIR = SCRIPT_DIR.parent.parent / "protocols" / "midea"
-sys.path.insert(0, str(GLOSSARY_DIR / "tools-serial"))
+REPO_ROOT = SCRIPT_DIR.parent.parent
+SIBLING_LIB = REPO_ROOT.parent / "blaueis-libmidea" / "packages" / "blaueis-core" / "src"
 
-from midea_codec import build_field_map, load_glossary  # noqa: E402
+if SIBLING_LIB.is_dir():
+    sys.path.insert(0, str(SIBLING_LIB))
+
+try:
+    from blaueis.core.codec import build_field_map, load_glossary  # noqa: E402
+except ImportError:
+    print(
+        "ERROR: Cannot import blaueis.core.codec.\n"
+        "Either install blaueis-libmidea (pip install -e ../blaueis-libmidea/packages/blaueis-core)\n"
+        "or clone it as a sibling directory of this repo.",
+        file=sys.stderr,
+    )
+    sys.exit(1)
 
 DISSECTOR = SCRIPT_DIR / "HVAC-shark_mid-xye.lua"
 MARKER_START = "-- ── GLOSSARY-GEN-START"

@@ -14,7 +14,7 @@ hvac_shark_proto = Proto("HVAC_Shark", "HVAC Shark Protocol")
 -- ── GLOSSARY-GEN-START ──────────────────────────────────────────────────────
 -- ==========================================================================
 -- AUTO-GENERATED from serial_glossary.yaml v0.1.0
--- Date: 2026-04-10
+-- Date: 2026-04-12
 -- Do not edit by hand — re-run generate_dissector_tables.py instead.
 -- ==========================================================================
 
@@ -46,6 +46,10 @@ local GLOSSARY_ENC = {
   temp_offset50_half = function(r) return (r - 50) / 2.0 end,
   temp_setpoint_legacy = function(r) return (r - -16) / 2.0 end,
   temp_setpoint_new = function(r) return (r - -12) / 1.0 end,
+  -- uint16_be: complex formula "(body[o] << 8) | body[o+1]" (not auto-generated)
+  -- uint16_le: complex formula "body[o] | (body[o+1] << 8)" (not auto-generated)
+  -- uint24_be: complex formula "(body[o] << 16) | (body[o+1] << 8) | body[o+2]" (not auto-generated)
+  -- uint24_le: complex formula "body[o] | (body[o+1] << 8) | (body[o+2] << 16)" (not auto-generated)
 }
 
 -- ── GLOSSARY_C0 (42 fields from rsp_0xc0) ──
@@ -125,16 +129,95 @@ local GLOSSARY_C1G3 = {
   {name="outdoor_target_compressor_freq", offset=16, bits={7,0}, dtype="uint8"},
 }
 
--- ── GLOSSARY_B1 (11 fields across 6 properties) ──
+-- ── GLOSSARY_B1 (56 fields across 46 properties) ──
 local GLOSSARY_B1 = {
+  ["0x01,0x02"] = {
+    {name="pre_cool_hot", offset=0, bits={0,0}, dtype="bool"},
+  },
   ["0x09,0x00"] = {
     {name="wind_swing_ud_angle", offset=0, bits={7,0}, dtype="uint8"},
   },
   ["0x0A,0x00"] = {
     {name="wind_swing_lr_angle", offset=0, bits={7,0}, dtype="uint8"},
   },
+  ["0x0B,0x02"] = {
+    {name="pm25_value", offset=0, bits={7,0}, dtype="uint16"},
+  },
+  ["0x15,0x00"] = {
+    {name="indoor_humidity", offset=0, bits={7,0}, dtype="uint8"},
+  },
+  ["0x18,0x00"] = {
+    {name="no_wind_sense", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x1A,0x00"] = {
+    {name="buzzer", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x1B,0x02"] = {
+    {name="little_angel", offset=0, bits={0,0}, dtype="bool"},
+  },
   ["0x1E,0x02"] = {
     {name="anion_ionizer", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x21,0x00"] = {
+    {name="cool_hot_sense", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x26,0x02"] = {
+    {name="auto_prevent_straight_wind", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x27,0x02"] = {
+    {name="remote_control_lock", offset=0, bits={0,0}, dtype="bool"},
+    {name="remote_control_value", offset=1, bits={7,0}, dtype="uint8"},
+  },
+  ["0x28,0x02"] = {
+    {name="operating_time_total", offset=0, bits={7,0}, dtype="uint16"},
+  },
+  ["0x29,0x00"] = {
+    {name="security", offset=0, bits={7,0}, dtype="uint8"},
+  },
+  ["0x30,0x00"] = {
+    {name="smart_eye", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x31,0x00"] = {
+    {name="intelligent_control", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x32,0x00"] = {
+    {name="wind_straight", offset=0, bits={7,0}, dtype="uint8"},
+  },
+  ["0x33,0x00"] = {
+    {name="breeze_away", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x34,0x00"] = {
+    {name="intelligent_wind", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x34,0x02"] = {
+    {name="body_check", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x39,0x00"] = {
+    {name="self_clean", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x3A,0x00"] = {
+    {name="child_prevent_cold_wind", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x41,0x00"] = {
+    {name="mode_query_value", offset=0, bits={7,0}, dtype="uint8"},
+  },
+  ["0x42,0x00"] = {
+    {name="breezeless", offset=0, bits={7,0}, dtype="uint8"},
+  },
+  ["0x43,0x00"] = {
+    {name="breeze_mild", offset=0, bits={7,0}, dtype="bool"},
+  },
+  ["0x44,0x00"] = {
+    {name="face_register", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x47,0x00"] = {
+    {name="high_temperature_monitor", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x48,0x00"] = {
+    {name="rate_select", offset=0, bits={7,0}, dtype="uint8"},
+  },
+  ["0x49,0x00"] = {
+    {name="prevent_super_cool", offset=0, bits={7,0}, dtype="uint8"},
   },
   ["0x4A,0x00"] = {
     {name="aqua_wash_manual", offset=0, bits={7,0}, dtype="bool"},
@@ -147,8 +230,54 @@ local GLOSSARY_B1 = {
     {name="fresh_air_switch", offset=0, bits={0,0}, dtype="bool"},
     {name="fresh_air_temp", offset=2, bits={7,0}, dtype="uint8"},
   },
+  ["0x4C,0x00"] = {
+    {name="extreme_wind_value", offset=0, bits={7,0}, dtype="uint8"},
+    {name="extreme_wind_level", offset=1, bits={7,0}, dtype="uint8"},
+  },
+  ["0x4E,0x00"] = {
+    {name="even_wind", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x4F,0x00"] = {
+    {name="single_tuyere", offset=0, bits={0,0}, dtype="bool"},
+  },
   ["0x50,0x00"] = {
     {name="water_pump", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x58,0x00"] = {
+    {name="prevent_straight_wind_lr", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x59,0x00"] = {
+    {name="wind_around_value", offset=0, bits={7,0}, dtype="uint8"},
+    {name="wind_around_ud_mode", offset=1, bits={7,0}, dtype="uint8"},
+  },
+  ["0x67,0x00"] = {
+    {name="jet_cool", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x8D,0x00"] = {
+    {name="mito_cool_temp", offset=0, bits={7,0}, dtype="float"},
+  },
+  ["0x8E,0x00"] = {
+    {name="mito_heat_temp", offset=0, bits={7,0}, dtype="float"},
+  },
+  ["0x8F,0x00"] = {
+    {name="dr_time_minutes", offset=0, bits={7,0}, dtype="uint8"},
+    {name="dr_time_hours", offset=1, bits={7,0}, dtype="uint8"},
+  },
+  ["0x91,0x00"] = {
+    {name="has_icheck", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0x98,0x00"] = {
+    {name="cvp", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0xAA,0x00"] = {
+    {name="new_wind_sense", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0xAD,0x00"] = {
+    {name="comfort", offset=0, bits={0,0}, dtype="bool"},
+  },
+  ["0xE3,0x00"] = {
+    {name="ieco_number", offset=0, bits={7,0}, dtype="uint8"},
+    {name="ieco_switch", offset=1, bits={0,0}, dtype="bool"},
   },
 }
 

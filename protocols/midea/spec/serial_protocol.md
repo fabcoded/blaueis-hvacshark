@@ -304,7 +304,7 @@ extended state query, engineering modes) via `body[4]`. It appears in two
 frame formats depending on bus:
 
 - **UART**: Extended query (`body[1]=0x21`, 24-byte frame) — documented in
-  community protocol research and community research 
+  community protocol research and community research
 - **R/T**: Standard query (`body[1]=0x81`, 38-byte frame) with `body[4]`
   repurposed — own captures, Sessions 4, 5, 7 (see §3.1.1 for hex example)
 

@@ -296,4 +296,3 @@ Each property is independent — safe to set one without knowing others.
 | `wind_straight` | `0x32` | capability |
 | `wind_swing_lr_angle` | `0x0A` | capability |
 | `wind_swing_ud_angle` | `0x09` | capability |
-

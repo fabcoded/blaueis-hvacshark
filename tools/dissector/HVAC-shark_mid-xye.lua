@@ -643,7 +643,7 @@ end
 
 local function decode_c1_group1(body_tree, buf, body_off, body_len)
     -- Group Page 0x41 = Group 1 "Base Run Info"
-    -- Source: community protocol research 
+    -- Source: community protocol research
     -- Cross-checked against own Session 1 captures (R/T bus, 13 unique frames).
     -- Session 6 service menu confirmation: T1=18°C, T3=2°C, T4=4°C, Tp=74°C
     --   → T1/T2 formula (raw-30)/2 confirmed; T3/T4 formula (raw-50)/2 confirmed;
@@ -775,7 +775,7 @@ end
 
 local function decode_c1_group2(body_tree, buf, body_off, body_len)
     -- Group 2 "Indoor Device Params"
-    -- Source: community protocol research 
+    -- Source: community protocol research
     -- All fields: Hypothesis.
 
     local d = body_off + 4
@@ -859,7 +859,7 @@ end
 
 local function decode_c1_group3(body_tree, buf, body_off, body_len)
     -- Group 3 "Outdoor Device Params"
-    -- Source: community protocol research 
+    -- Source: community protocol research
     -- Note: query page 0x43 echoes body[3]=0x03, not 0x43 — dispatch via body[3]&0x0F=3
     -- All fields: Hypothesis.
 
@@ -1000,7 +1000,7 @@ end
 
 local function decode_c1_group5(body_tree, buf, body_off, body_len)
     -- Group 5 "Extended Params"
-    -- Source: community protocol research 
+    -- Source: community protocol research
     -- All fields: Hypothesis.
 
     local d = body_off + 4
@@ -1095,7 +1095,7 @@ end
 
 local function decode_c1_extstate_01(body_tree, buf, body_off, body_len)
     -- 0xC1 extended state sub-page 0x01 — sensor temperatures, fault flags, actuator positions
-    -- Source: community protocol research 
+    -- Source: community protocol research
     -- NOT verified against own captures. All fields: Hypothesis.
 
     -- Helper: 16-bit LE × 0.01 °C, MSB ≥ 0x80 → negative
@@ -1282,7 +1282,7 @@ end
 
 local function decode_c1_extstate_02(body_tree, buf, body_off, body_len)
     -- 0xC1 extended state sub-page 0x02 — status flags, timers, power, vane angles, compressor
-    -- Source: community protocol research 
+    -- Source: community protocol research
     -- NOT verified against own captures. All fields: Hypothesis.
 
     body_tree:add(buf(body_off, 2), "Extended State Sub-page: 0x02 (Hypothesis — not in own captures)")
@@ -1441,7 +1441,7 @@ local function decode_uart_c1(body_tree, buf, body_off, body_len)
     if b1 == 0x21 and b2 == 0x01 then
         -- Group dev-param page response (R/T bus, KJR wall controller)
         -- body[3] = page ID echoed from request; group = body[3] & 0x0F
-        -- Source: community protocol research 
+        -- Source: community protocol research
         local group = bit.band(b3, 0x0F)
         body_tree:add(buf(body_off + 0, 4), string.format(
             "Command ID: 0xC1 (Group Page Response, page=0x%02X, group=%d)", b3, group))

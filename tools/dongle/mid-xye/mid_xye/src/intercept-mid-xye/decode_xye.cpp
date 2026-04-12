@@ -59,12 +59,12 @@ void printBuffer(uint8_t *buffer, uint8_t length) {
   Serial.println();
 }
 
-void sendBufferUDP(WiFiUDP &udp, uint8_t *buffer, uint8_t length, int udpPort) { 
+void sendBufferUDP(WiFiUDP &udp, uint8_t *buffer, uint8_t length, int udpPort) {
   udp.beginPacket("255.255.255.255", udpPort);
   udp.write((const uint8_t *)"HVAC_shark", 10); //start sequence
   udp.write(1); // manufacturer: 1 for Midea
   udp.write(0); // bus type: 0 for XYE bus
   udp.write(0); // reserved
   udp.write(buffer, length);
-  udp.endPacket(); 
+  udp.endPacket();
 }

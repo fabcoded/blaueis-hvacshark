@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import socket
 import argparse
+import socket
 
 # Import pyserial with error handling
 try:
@@ -88,29 +88,21 @@ def list_available_ports():
             return "No serial ports found"
         return "\n".join(f"{port.device}: {port.description}" for port in ports)
     except Exception as e:
-        return f"Error listing ports: {str(e)}"
+        return f"Error listing ports: {e!s}"
 
 
 def main():
     parser = argparse.ArgumentParser(description="Midea XYE RS485 to UDP Bridge")
-    parser.add_argument(
-        "--port", type=str, help="Serial port (e.g., COM3 or /dev/ttyUSB0)"
-    )
-    parser.add_argument(
-        "--baud", type=int, default=4800, help="Baud rate (default: 4800)"
-    )
+    parser.add_argument("--port", type=str, help="Serial port (e.g., COM3 or /dev/ttyUSB0)")
+    parser.add_argument("--baud", type=int, default=4800, help="Baud rate (default: 4800)")
     parser.add_argument(
         "--udp-host",
         type=str,
         default="127.0.0.1",
         help="UDP target host (default: 127.0.0.1)",
     )
-    parser.add_argument(
-        "--udp-port", type=int, default=UDP_PORT, help=f"UDP port (default: {UDP_PORT})"
-    )
-    parser.add_argument(
-        "--list-ports", action="store_true", help="List available serial ports"
-    )
+    parser.add_argument("--udp-port", type=int, default=UDP_PORT, help=f"UDP port (default: {UDP_PORT})")
+    parser.add_argument("--list-ports", action="store_true", help="List available serial ports")
     args = parser.parse_args()
 
     if args.list_ports:
@@ -119,9 +111,7 @@ def main():
         return
 
     if not args.port:
-        print(
-            "Error: Serial port is required. Use --list-ports to see available ports."
-        )
+        print("Error: Serial port is required. Use --list-ports to see available ports.")
         return
 
     try:

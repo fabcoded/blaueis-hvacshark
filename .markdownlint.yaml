@@ -1,0 +1,9 @@
+# Relaxed markdownlint config for protocol documentation.
+# Protocol tables are wide, some docs use HTML, and duplicate headings
+# are common across different sections.
+
+default: true
+MD013: false          # line length - protocol tables are wide
+MD033: false          # inline HTML
+MD024:
+  siblings_only: true # allow duplicate headings in different sections

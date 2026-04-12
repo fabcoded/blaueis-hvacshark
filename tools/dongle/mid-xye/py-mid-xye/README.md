@@ -1,6 +1,6 @@
 # Usage
 ```
-cd dongle/mid-xye/py-mid-xye
+cd tools/dongle/mid-xye/py-mid-xye
 python3 -m venv venv
 source venv/bin/activate
 # or for fish users

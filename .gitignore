@@ -1,0 +1,16 @@
+.vscode
+
+# Saleae Logic Analyzer session files (binary, can be large)
+*.sal
+
+# Temporary/scratch markdown files
+*.mdtemp.md
+
+# Ignore python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+#Ignore ruff
+.ruff_cache/

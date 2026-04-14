@@ -68,7 +68,7 @@ Generated from `serial_glossary.yaml`. Snapshot for reference; may go stale.
 | `power_on_timer` | in/out | — | cmd_0x40 (RMW) | readable |
 | `power_save` | in/out | — | cmd_0x40 (RMW) | always |
 | `protocol_bit1` | out | — | cmd_0x40 (RMW) | always |
-| `ptc_heater` | in/out | `0x19` | cmd_0x40 (RMW) | readable |
+| `auxiliary_heat_level` | in/out | `0x19` | cmd_0x40 (RMW) | readable |
 | `rate_select` | in/out | `0x48` | cmd_0xb0 (TLV) | capability |
 | `resume` | in/out | — | cmd_0x40 (RMW) | always |
 | `screen_display` | in/out | `0x24` | — | readable |
@@ -214,7 +214,7 @@ Generated from `serial_glossary.yaml`. Snapshot for reference; may go stale.
 | `0x16` | `current_run_power_kwh` (in), `realtime_power_kw` (in), `total_power_kwh` (in), `total_run_power_kwh` (in) | | Power monitoring; data from C1 group4 |
 | `0x17` | `nest_filter_check` (—) | | Cap-as-value sensor (no B0 property) |
 | `0x18` | `silky_cool` (in/out) | |  |
-| `0x19` | `ptc_heater` (in/out) | |  |
+| `0x19` | `auxiliary_heat_level` (in/out) | |  |
 | `0x1A` | `turbo_mode` (in/out) | |  |
 | `0x1E` | `anion_ionizer` (in/out) | |  |
 | `0x1F` | `humidity_setpoint` (in/out) | |  |
@@ -262,7 +262,7 @@ Sending a `cmd_0x40` Set command without knowing the current state of these fiel
 | `power_on_timer` | in/out | readable |
 | `power_save` | in/out | always |
 | `protocol_bit1` | out | always |
-| `ptc_heater` | in/out | readable |
+| `auxiliary_heat_level` | in/out | readable |
 | `resume` | in/out | always |
 | `sleep_mode` | in/out | always |
 | `strong_wind` | in/out | always |

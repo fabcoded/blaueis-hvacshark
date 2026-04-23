@@ -241,7 +241,7 @@ means system-fixed (controller-managed speed). Value 102 means Auto.
 
 Hardware evidence: Session 11 on XtremeSaveBlue (cap 0x10 = 1) — arbitrary
 percentages (1%, 8%, 21%, 96%, 100%) all commanded via UART and immediately
-confirmed in 0xC0 response body[3]. See `device_xtremesaveblue.md` §6.4.
+confirmed in 0xC0 response body[3]. See `../devices/device_xtremesaveblue.md` §6.4.
 
 **XYE bus is unaffected.** The B5 capability query is a UART-only feature — the
 XYE bus has no capability negotiation mechanism. XYE always uses one-hot bitmask
@@ -343,4 +343,4 @@ in HVAC_shark header), not by frame content.
 - [protocol_xye.md](protocol_xye.md) — XYE RS-485 protocol
 - [protocol_mainboard.md](protocol_mainboard.md) — Display ↔ mainboard internal bus
 - [serial_protocol.md](serial_protocol.md) — Shared UART/R/T command set
-- [device_xtremesaveblue.md](device_xtremesaveblue.md) — Device-specific observations
+- [device_xtremesaveblue.md](../devices/device_xtremesaveblue.md) — Device-specific observations

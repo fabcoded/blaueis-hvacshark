@@ -46,7 +46,7 @@ issue or contact the author directly.
 |-----------|------|-------------|
 | Wireshark Lua dissectors | `tools/dissector/` | Dissects HVAC_shark UDP frames in Wireshark (one per manufacturer family) |
 | ESP32 / Python dongle | `tools/dongle/mid-xye/` | Live-capture firmware + Python serial-to-UDP bridge |
-| Protocol documentation | `protocols/<manufacturer>/` | Protocol documentation organised into `spec/`, `devices/`, `comparison/`, `analysis/` |
+| Protocol documentation | `protocols/<manufacturer>/` | Protocol documentation organised into `spec/`, `devices/`, `analysis/` |
 
 ## Currently supported protocols
 
@@ -66,7 +66,6 @@ protocols/
   midea/                Midea family protocols
     spec/               Protocol specifications (UART, R/T, XYE, IR, Display-Mainboard)
     devices/            Device-specific behaviour documentation
-    comparison/         Cross-protocol comparisons
     analysis/           Special function deep-dives
 ```
 
@@ -103,7 +102,7 @@ to community work or own captures; AI assists with organisation and validation.
 
 ## Contributing
 
-Contributions are welcome! Please submit a pull request or open an issue to discuss your ideas.
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) — covers the citation rule, confidence-label conventions, where new protocol / device / analysis content belongs, and what good PRs look like. For anything non-trivial (new protocol, new manufacturer, new device family), open an issue first.
 
 ## Acknowledgements
 
@@ -112,13 +111,22 @@ contributors around **Home Assistant**, **ESPHome**, and the broader maker commu
 for their tireless research work and for publishing their findings openly.
 
 Projects that made this research possible:
-- [crankyoldgit/IRremoteESP8266](https://github.com/crankyoldgit/IRremoteESP8266)
-- [dudanov/MideaUART](https://github.com/dudanov/MideaUART)
-- [chemelli74/midea-local](https://github.com/chemelli74/midea-local)
-- [reneklootwijk/node-mideahvac](https://github.com/reneklootwijk/node-mideahvac)
-- [codeberg.org/xye/xye](https://codeberg.org/xye/xye)
-- [wtahler/esphome-mideaXYE-rs485](https://github.com/wtahler/esphome-mideaXYE-rs485)
-- The countless forum threads, GitHub issues, and pull requests in the HA and ESPHome communities
+- [crankyoldgit/IRremoteESP8266](https://github.com/crankyoldgit/IRremoteESP8266) — IR protocol reference for Midea remotes.
+- [dudanov/MideaUART](https://github.com/dudanov/MideaUART) — ESP/Arduino library for Midea UART.
+- [chemelli74/midea-local](https://github.com/chemelli74/midea-local) — Python client for the Midea LAN protocol.
+- [reneklootwijk/node-mideahvac](https://github.com/reneklootwijk/node-mideahvac) — Node.js driver for Midea AC.
+- [NeoAcheron/midea-ac-py](https://github.com/NeoAcheron/midea-ac-py) — early Python Midea AC implementation, historical reference.
+- [wuwentao/midea_ac_lan](https://github.com/wuwentao/midea_ac_lan) — HA integration covering a broad Midea device set.
+- [codeberg.org/xye/xye](https://codeberg.org/xye/xye) — XYE bus reference documentation.
+- [wtahler/esphome-mideaXYE-rs485](https://github.com/wtahler/esphome-mideaXYE-rs485) — ESPHome RS-485 Midea XYE component.
+- The countless forum threads, GitHub issues, and pull requests in the HA and ESPHome communities.
+
+### Related projects in this ecosystem
+
+- [blaueis-libmidea](https://github.com/fabcoded/blaueis-libmidea) — Python library consuming the protocol knowledge this repository documents.
+- [blaueis-ha-midea](https://github.com/fabcoded/blaueis-ha-midea) — Home Assistant integration.
+- [blaueis-esphome](https://github.com/fabcoded/blaueis-esphome) — ESP32 gateway port (placeholder).
+- [blaueis-hvacshark-traces](https://github.com/fabcoded/blaueis-hvacshark-traces) — companion capture archive.
 
 If you believe your work is referenced here without proper attribution, if you would
 like code or findings removed, or if you have any licensing concerns, please open an

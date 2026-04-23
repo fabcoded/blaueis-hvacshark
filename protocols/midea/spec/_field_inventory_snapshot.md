@@ -97,7 +97,7 @@ Generated from `serial_glossary.yaml`. Snapshot for reference; may go stale.
 | `clean_fan_time` | in | — | readable | Post-run fan / cool fan: keeps fan running after compressor stops t... |
 | `compensated_setpoint` | in | — | readable | Compensated temperature setpoint (Tsc). Internal raw value after co... |
 | `compressor_cumul_hours_low` | in | — | readable | Compressor cumulative runtime hours low byte (LE 16-bit with body[1... |
-| `compressor_current` | in | — | readable | Compressor current draw. Raw value, unit unclear. |
+| `compressor_idle` | in | — | readable | Compressor idle flag. 1 = idle, 0 = running. |
 | `compressor_flux` | in | — | readable | Compressor motor magnetic flux (raw x 8). |
 | `compressor_frequency` | in | — | readable | Compressor running frequency (FR). 0 Hz when compressor is off. |
 | `compressor_peak_current` | in | — | readable | Compressor motor peak current. |

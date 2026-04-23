@@ -446,9 +446,9 @@ than the AC's target setpoint. **Further investigation needed.**
 
 ## References
 
-- Own hardware captures: HVAC-shark-dumps repository (Midea extremeSaveBlue, Sessions 2 and 10)
-- Session 2 notes: [SessionNotes.md](../../../../HVAC-shark-dumps/Midea-extremeSaveBlue-display/Session%202/SessionNotes.md)
-- Session 2 findings: [findings.md](../../../../HVAC-shark-dumps/Midea-extremeSaveBlue-display/Session%202/findings.md)
+- Own hardware captures: HVAC-shark-dumps repository (Midea XtremeSaveBlue, Sessions 2 and 10)
+- Session 2 notes: [SessionNotes.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%202/SessionNotes.md)
+- Session 2 findings: [findings.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%202/findings.md)
 - Session 10 findings (C/F analysis): [findings.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%2010/findings.md)
 - crankyoldgit/IRremoteESP8266 — `src/ir_Midea.h`, `src/ir_Midea.cpp`
 - ESPHome midea component — `esphome/components/midea/ir_transmitter.h`

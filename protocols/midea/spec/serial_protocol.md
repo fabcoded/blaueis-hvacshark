@@ -2196,10 +2196,7 @@ Byte 12: 0x48 = cool(2<<5) | (24-16=8)
 Byte 13: 0x66 = fan_auto(102)
 XX = msg_id, YY = CRC8, ZZ = checksum
 
-For a comprehensive collection of **26 annotated frame examples** covering every observed
-MSG_TYPE and body[0] combination from own captures, see [uart_examples.md](uart_examples.md).
-Examples include: set commands, property TLV, all heartbeat types (A1-A6), B5 capabilities,
-boot sequence (0x07, 0x65, 0xA0, 0x0D), network status, and group page responses.
+For frame examples covering individual MSG_TYPE and body[0] combinations, see the per-session `findings.md` files under `HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session N/`.
 
 ---
 
@@ -2232,7 +2229,7 @@ To determine the real operating mode, read the display-mainboard internal bus
 or the C1 Group 1 "indoor operating mode" field.
 
 For device-specific observations (relay timing, polling rates, cross-bus mode
-mismatch examples), see [device_xtremesaveblue.md](device_xtremesaveblue.md).
+mismatch examples), see [device_xtremesaveblue.md](../devices/device_xtremesaveblue.md).
 
 ---
 

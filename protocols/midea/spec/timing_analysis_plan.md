@@ -1,11 +1,15 @@
 # UART Timing Analysis — Plan
 
-> **Status: Plan, not yet executed.** This document specifies the analysis we
-> have never done, the script that would produce the answer, and the decisions
-> that ride on it. No timing claim in this repo carries confidence above
-> **[Hypothesis]** until this analysis is run.
+> **Status: Executed (2026-04-14).** The analysis has been run and the
+> results landed in `HVAC-shark-dumps/data-analysis/midea/uart/timing-analysis.md`.
+> Headline outcome: `frame_spacing_ms` default raised from 100 to 150 ms
+> (floor 80 ms, OEM median 116 ms, p95 775 ms). The rest of this doc is
+> retained as a historical record of the plan — read
+> `timing-analysis.md` for the actual numbers, conclusions, and
+> confidence labels. The follow-ons in §7 (controlled cadence
+> experiment, dissector delta column) remain open.
 
-Related: `blaueis-libmidea/docs/flight_recorder.md` (in-memory debug buffer; same observation-infrastructure theme).
+Related: `blaueis-libmidea/docs/flight_recorder.md` (in-memory debug buffer; built 2026-04-14 and now the preferred tool for gateway self-timing).
 
 ---
 
@@ -143,7 +147,7 @@ Per the §1.1 stateless invariant in `flight_recorder.md`: we do not assume all 
 
 ## 7. Follow-on (out of scope here, captured to not forget)
 
-- **Controlled cadence experiment** on the live Pi (Atelier Midea, 192.168.210.30) — once the flight recorder is built, vary `frame_spacing_ms` downward in steps, watch the ring for missed replies. This is the only way to find the real floor. Must be opt-in and gated by a config flag.
+- **Controlled cadence experiment** on a live gateway — once the flight recorder is built, vary `frame_spacing_ms` downward in steps, watch the ring for missed replies. This is the only way to find the real floor. Must be opt-in and gated by a config flag.
 - **Dissector delta-time column** in `HVAC-shark_mid-xye.lua` — exposes the existing pcap timestamps as a visible column, trivial change, makes manual eyeballing useful.
 - **Gateway self-timing** — the flight recorder's `tx_seq` + `ts` already captures our own cadence for free once built; no extra work needed to baseline the gateway.
 

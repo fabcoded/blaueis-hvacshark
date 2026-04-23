@@ -1,9 +1,11 @@
 # Midea HVAC Serial Protocol — Field Glossary
 
-> **Skeleton v0.1.0** — representative fields across all categories.
-> See [serial_glossary_guide.md](serial_glossary_guide.md) for conventions,
-> structure, and how to add new entries. Machine-readable source:
-> [serial_glossary.yaml](serial_glossary.yaml).
+> **Hand-curated skeleton** — representative fields with conceptual
+> annotations (see §8 Ambiguities and Disputes). The full, machine-readable
+> glossary (161 fields) lives at
+> `blaueis-libmidea/packages/blaueis-core/src/blaueis/core/data/glossary.yaml`
+> and is the canonical source; the auto-generated per-field inventory is at
+> [_field_inventory_snapshot.md](_field_inventory_snapshot.md).
 
 ______________________________________________________________________
 
@@ -202,8 +204,8 @@ ______________________________________________________________________
 
 ## References
 
-- [serial_glossary_guide.md](serial_glossary_guide.md) — Approach, conventions, how to add entries
-- [serial_glossary.yaml](serial_glossary.yaml) — Machine-readable source (canonical)
-- [serial_glossary_schema.json](serial_glossary_schema.json) — JSON Schema for validation
+- `blaueis-libmidea/packages/blaueis-core/src/blaueis/core/data/glossary.yaml` — machine-readable source (canonical; 161 fields)
+- `blaueis-libmidea/packages/blaueis-core/src/blaueis/core/data/glossary_schema.json` — JSON Schema for validation
+- [_field_inventory_snapshot.md](_field_inventory_snapshot.md) — auto-generated inventory of all fields by direction / cap / frame
 - [serial_protocol.md](serial_protocol.md) — Serial protocol command reference
 - [protocol_shared.md](protocol_shared.md) — Cross-bus encoding variants

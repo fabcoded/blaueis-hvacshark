@@ -285,11 +285,12 @@ appear on **both** wifiBrown and wifiOrange in equal counts:
 
 Byte-level analysis reveals **two distinct mechanisms**:
 
-**True echo (identical bytes, ~50ms delay):**
+**True echo (identical bytes, 50–60 ms delay):**
 Heartbeat ACK and Capabilities frames appear first on wifiOrange (fromACdisplay),
-then ~50ms later on wifiBrown (toACdisplay) with **identical raw bytes**. The AC
-mainboard sends the frame through the display to the dongle; the dongle retransmits
-the exact same frame back as an acknowledgment.
+then 50–60 ms later on wifiBrown (toACdisplay) with **identical raw bytes** (p50 ≈ 57 ms,
+hard ceiling ~60 ms — see `HVAC-shark-dumps/data-analysis/midea/uart/timing-analysis.md §4`).
+The AC mainboard sends the frame through the display to the dongle; the dongle
+retransmits the exact same frame back as an acknowledgment.
 
 Example (Session 1, Heartbeat ACK):
 ```

@@ -2,9 +2,10 @@
 
 > **Source Status — Own Hardware Observations Only**
 > Based entirely on own hardware captures from the `HVAC-shark-dumps` repository
-> (Midea extremeSaveBlue display board, Session 1). No community reference for
-> this specific bus was found. No official Midea specification is publicly available.
-> Confidence levels are stated explicitly per field.
+> (Midea XtremeSaveBlue, display-board tap, Session 1 of the logic-analyzer
+> series). No community reference for this specific bus was found. No official
+> Midea specification is publicly available. Confidence levels are stated
+> explicitly per field.
 
 For the shared command set, see [serial_protocol.md](serial_protocol.md).
 For UART transport framing, see [protocol_uart.md](protocol_uart.md).
@@ -196,7 +197,7 @@ Requests are 0xAA frames (bus adapter → display), responses are 0x55 frames
 
 ## References
 
-- Own hardware captures: HVAC-shark-dumps repository (Midea extremeSaveBlue, Session 1)
-- Session findings: [findings.md](../../../../HVAC-shark-dumps/Midea-extremeSaveBlue-display/Session%201/findings.md)
+- Own hardware captures: HVAC-shark-dumps repository (Midea XtremeSaveBlue, Session 1 logic-analyzer)
+- Session findings: [findings.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%201/findings.md)
 - Serial protocol (shared command set): [serial_protocol.md](serial_protocol.md)
 - UART transport framing: [protocol_uart.md](protocol_uart.md)

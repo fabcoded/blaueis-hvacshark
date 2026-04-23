@@ -103,7 +103,7 @@ local GLOSSARY_C0 = {
 
 -- ── GLOSSARY_C1G1 (14 fields from rsp_0xc1_group1) ──
 local GLOSSARY_C1G1 = {
-  {name="compressor_current", offset=6, bits={7,0}, dtype="uint8"},
+  {name="compressor_idle", offset=6, bits={0,0}, dtype="bool"},
   {name="compressor_frequency", offset=4, bits={7,0}, dtype="uint8"},
   {name="compressor_target_frequency", offset=5, bits={7,0}, dtype="uint8"},
   {name="discharge_pipe_temp", offset=14, bits={7,0}, dtype="uint8", encoding="temp_direct_integer"},

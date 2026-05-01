@@ -80,7 +80,6 @@ This document covers only the UART transport framing.
 | `NeoAcheron/midea-ac-py` | Python | Low-Medium | Older. Frame offsets shifted due to network-layer header in model |
 | `reneklootwijk/midea-uart` | C++ / ESP8266 | Low-Medium | Useful for framing detail, limited scope |
 | `yitsushi/midea-air-condition` | Ruby | Low | Niche, likely unmaintained. Basic consistency check only |
-| `mac-zhou/midea-msmart` | Python | Medium | Original midea-msmart, Local LAN protocol |
 | community protocol research | Python | High | Fork with advanced documentation; see community protocol research for extracted findings (Findings 1-14) |
 | community protocol research | — | High | UART protocol reference: MSG_TYPE behavior, boot sequence, body handling  |
 | **Own hardware captures** | — | Sessions 1-9 | HVAC-shark-dumps repository, logic-analyser sessions |

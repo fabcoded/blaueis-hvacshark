@@ -81,19 +81,21 @@ ______________________________________________________________________
 
 ## 6. Cross-Reference: Source Name Mapping
 
-| Canonical             | midea_lua          | dudanov     | msmart              | node_mideahvac     | midea_local         |
-| --------------------- | ------------------ | ----------- | ------------------- | ------------------ | ------------------- |
-| `power`               | power              | powerState  | power_state         | powerOn            | power               |
-| `operating_mode`      | mode               | m_mode      | operational_mode    | mode               | mode                |
-| `target_temperature`  | temperature        | targetTemp  | target_temperature  | setpoint           | target_temperature  |
-| `fan_speed`           | windMode           | m_fanSpeed  | fan_speed           | fanSpeed           | fan_speed           |
-| `eco_mode`            | eco                | m_ecoMode   | eco_mode            | ecoMode            | eco                 |
-| `turbo_mode`          | —                  | m_turbo     | turbo_mode          | —                  | turbo               |
-| `buzzer`              | buzzer             | m_buzzer    | beep_on             | —                  | prompt_tone         |
-| `indoor_temperature`  | indoor_temperature | indoorTemp  | indoor_temperature  | indoorTemperature  | indoor_temperature  |
-| `outdoor_temperature` | —                  | outdoorTemp | outdoor_temperature | outdoorTemperature | outdoor_temperature |
-| `t1_indoor_coil`      | T1                 | —           | T1                  | —                  | —                   |
-| `discharge_pipe_temp` | Tp                 | —           | —                   | —                  | —                   |
+| Canonical             | dudanov     | node_mideahvac     | midea_local         |
+| --------------------- | ----------- | ------------------ | ------------------- |
+| `power`               | powerState  | powerOn            | power               |
+| `operating_mode`      | m_mode      | mode               | mode                |
+| `target_temperature`  | targetTemp  | setpoint           | target_temperature  |
+| `fan_speed`           | m_fanSpeed  | fanSpeed           | fan_speed           |
+| `eco_mode`            | m_ecoMode   | ecoMode            | eco                 |
+| `turbo_mode`          | m_turbo     | —                  | turbo               |
+| `buzzer`              | m_buzzer    | —                  | prompt_tone         |
+| `indoor_temperature`  | indoorTemp  | indoorTemperature  | indoor_temperature  |
+| `outdoor_temperature` | outdoorTemp | outdoorTemperature | outdoor_temperature |
+| `t1_indoor_coil`      | —           | —                  | —                   |
+| `discharge_pipe_temp` | —           | —                  | —                   |
+
+> See `glossary.yaml` field `alt_names:` blocks (in the libmidea package) for the full provenance set, including codename-tagged entries from sources not surfaced in this table.
 
 ______________________________________________________________________
 
@@ -166,9 +168,9 @@ positions are observed in community implementations.
 
 dudanov/MideaUART interprets B5 cap 0x10 value=1 as "fan speed control
 not supported" (`m_fanSpeedControl = uval != 1`). This is incorrect —
-value=1 means **stepless** (continuously variable 0-100%), from Chinese
-无极 = "stepless / no limits". The correct interpretation: value=1 is a
-valid and more capable fan speed control mode.
+value=1 means **stepless** (continuously variable 0-100% — "no limits").
+The correct interpretation: value=1 is a valid and more capable fan
+speed control mode.
 
 ### 8.6 Target Temperature — Three Response Encodings
 

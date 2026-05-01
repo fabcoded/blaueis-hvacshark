@@ -598,7 +598,7 @@ Source: community protocol research.
 > position changes (medium, uppest-left, auto-swing, anti-direct-wind)
 > via app and IR remote. The UART 0xC0 response showed "Swing: Off"
 > throughout the entire session. Specific vane positions and the
-> anti-direct-wind (防直吹) feature are likely carried via the 0xB0
+> anti-direct-wind feature are likely carried via the 0xB0
 > property protocol (properties 0x09/0x0A for angle, 0x42 for
 > breezeless) or only visible on the XYE bus (C6 byte[6], D0
 > byte[11]). The 0xC0 body[7] swing bits only reflect on/off state,
@@ -2708,7 +2708,7 @@ Consolidated list of unresolved items from throughout this document:
 | OQ-17 | localBodySense — occupancy sensor | §3.1.4.7 | **Hypothesis** | community protocol research: body[9] bit 7 = localBodySense (built-in occupancy sensor). Source confirmed in reference code response parser. Own captures: always 0x00 (test unit has no occupancy sensor). Previously mislabeled as ECO in §4.1 — corrected |
 | OQ-18 | 0xA0 alternative temp encoding | §5.3 | Hypothesis | community protocol research: alternative temp formula `((body[1] & 0x3E) >> 1) + 12` with half-degree in bit 6. Trigger: dataType=0x05, body[0]=0xA0. Not verified on hardware |
 | OQ-19 | 20 new MSG_TYPEs unverified | §2.1 | Consistent | Firmware-verified but not captured on own hardware |
-| OQ-20 | Python msmart: no A1 heartbeat | — | Gap | Python library does not parse A1 (0xA1) heartbeat frames |
+| OQ-20 | Some Python implementations: no A1 heartbeat | — | Gap | A1 (0xA1) heartbeat frames not handled by every community library |
 | OQ-21 | deviceSN8 variant temperature decoding | §3.4.2 | Hypothesis | CA models use different bit positions in B5 temp field. Needs testing across model families (community research) |
 | OQ-22 | Smart Dry mode field | §4.1 | Hypothesis | smartDryValue (body[13] or [19], 7-bit, 30-101%) only in DRY/SMART_DRY mode. Not captured (community research) |
 | OQ-23 | Comfort sleep curve format | §3.2 | Hypothesis | comma-separated hex string; exact encoding undocumented (community research) |

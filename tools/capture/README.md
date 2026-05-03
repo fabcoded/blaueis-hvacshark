@@ -1,7 +1,7 @@
 # `tools/capture/` — passive frame capture for blaueis-gw deployments
 
 Two scripts for capturing live frames from a deployed blaueis-gateway,
-wrapping them in HVAC-shark PCAP encapsulation, and extracting them
+wrapping them in blaueis-hvacshark PCAP encapsulation, and extracting them
 into the codec-test fixture format that lives in `blaueis-libmidea`.
 
 ## `passive_capture.py`
@@ -16,7 +16,7 @@ traffic without injecting probes.
 python passive_capture.py \
     --gateway ws://192.168.210.30:8765 \
     --psk-file /tmp/blaueis_psk \
-    --output-dir ../../HVAC-shark-dumps/passive_capture_s1 \
+    --output-dir ../../blaueis-hvacshark-traces/passive_capture_s1 \
     --duration 420
 ```
 
@@ -40,7 +40,7 @@ fixture in the format the `blaueis-libmidea` codec tests consume.
 
 ```bash
 python pcap_to_fixture.py \
-    --pcap ../../HVAC-shark-dumps/passive_capture_s1/capture.pcap \
+    --pcap ../../blaueis-hvacshark-traces/passive_capture_s1/capture.pcap \
     --frame-filter c1_group1 \
     --device "Atelier Midea" \
     --out /workspaces/hvac-shark-dev/blaueis-libmidea/.../tests/test-cases/passive_capture_s1/c1g1_frames.yaml
@@ -63,7 +63,7 @@ rather than as an `ImportError`.
 
 ## Layout convention
 
-- **Raw captures live in `HVAC-shark-dumps/passive_capture_sN/`** —
+- **Raw captures live in `blaueis-hvacshark-traces/passive_capture_sN/`** —
   one directory per session, with `capture.pcap`, `capture.jsonl`,
   and `notes.md`.
 - **Codec test fixtures live in `blaueis-libmidea/.../tests/test-cases/passive_capture_sN/`**

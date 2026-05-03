@@ -1,7 +1,7 @@
 # UART Timing Analysis — Plan
 
 > **Status: Executed (2026-04-14).** The analysis has been run and the
-> results landed in `HVAC-shark-dumps/data-analysis/midea/uart/timing-analysis.md`.
+> results landed in `blaueis-hvacshark-traces/data-analysis/midea/uart/timing-analysis.md`.
 > Headline outcome: `frame_spacing_ms` default raised from 100 to 150 ms
 > (floor 80 ms, OEM median 116 ms, p95 775 ms). The rest of this doc is
 > retained as a historical record of the plan — read
@@ -56,7 +56,7 @@ Existing timing mentions (scattered, not systematic):
 
 ## 4. Script — `tools/timing_analysis/analyze_timing.py`
 
-Location: `HVAC-shark/tools/timing_analysis/` (new directory).
+Location: `blaueis-hvacshark/tools/timing_analysis/` (new directory).
 
 ### 4.1 Inputs
 
@@ -93,7 +93,7 @@ A second pass groups by capture source (OEM dongle / logic-analyzer / our gatewa
 - `pyshark` or `scapy` for pcapng. `pyshark` is simpler for Midea over USB-UART captures; `scapy` if we need tighter control.
 - `pandas` for aggregation.
 - `matplotlib` optional.
-- All stay in the `HVAC-shark/tools/` subtree; no new top-level deps.
+- All stay in the `blaueis-hvacshark/tools/` subtree; no new top-level deps.
 
 ### 4.6 Non-goals
 
@@ -155,7 +155,7 @@ Per the §1.1 stateless invariant in `flight_recorder.md`: we do not assume all 
 
 ## 8. Steps — ordered
 
-1. Create `HVAC-shark/tools/timing_analysis/` — script skeleton, README, no parsing yet.
+1. Create `blaueis-hvacshark/tools/timing_analysis/` — script skeleton, README, no parsing yet.
 2. Implement `session.csv` ingestion (easiest; absolute timestamps, both directions).
 3. Implement pcapng ingestion (via `pyshark`).
 4. Implement metrics (§4.2) on one capture, sanity-check numbers against Session 1's existing "0.198 s / 5.5 s" note.

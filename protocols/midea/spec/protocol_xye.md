@@ -39,8 +39,8 @@ Both transports carry the same XYE command set. Differences are documented in §
 | XYE adapter (direct) | MFB-C (XYE RS-485, 4-terminal) |
 | Wired controllers | KJR-120M (HAHB path), KJR-120X (XYE path) |
 | Capture tool (HAHB) | Saleae logic analyzer on HA/HB differential pair |
-| Capture tool (XYE) | HVAC-shark ESP32 RS-485 dongle (passive, receive-only) |
-| Dissector | HVAC-shark Lua dissector (`HVAC-shark_mid-xye.lua`) |
+| Capture tool (XYE) | blaueis-hvacshark ESP32 RS-485 dongle (passive, receive-only) |
+| Dissector | blaueis-hvacshark Lua dissector (`HVAC-shark_mid-xye.lua`) |
 
 **Capture path note**: Own HAHB captures (logic analyzer Sessions 3–13) are recorded
 on the HA/HB bus between the KJR-120M room controller and the MFB-X adapter board.
@@ -219,7 +219,7 @@ Formulation B (ones complement of all bytes, used by ESPHome):
 
 These are algebraically identical because preamble (0xAA) + epilogue (0x55) = 0xFF.
 Adding 0xFF to the inner sum before ones complement yields the same result as twos
-complement of the inner sum alone. The HVAC-shark dissector uses formulation A.
+complement of the inner sum alone. The blaueis-hvacshark dissector uses formulation A.
 
 **Sources**: CB-erl (formulation A), ESPHome (formulation B), own dissector (A).
 All three produce identical CRC values. **Confirmed**.
@@ -272,7 +272,7 @@ nibble-pair encoding: the byte is split into high and low nibbles, each XOR'd wi
 0xFF and transmitted separately. This doubles the physical byte count, halving the
 effective data rate to ~2400 logical bytes/s.
 
-The HVAC-shark pcap converter handles the nibble-pair decode transparently — all
+The blaueis-hvacshark pcap converter handles the nibble-pair decode transparently — all
 frame data in the pcap files is already decoded to logical XYE bytes.
 
 ### 3.3 Functional Differences

@@ -1,6 +1,6 @@
 # Getting Started
 
-To use the HVAC-shark dissector:
+To use the blaueis-hvacshark dissector:
 
 1. Copy the `hvac-shark.lua` script to your Wireshark plugins directory. This can be identified via Wireshark > About > Folders.
 - Alternative: On Linux, you can use symbolic links to load the new dissector without restarting Wireshark:

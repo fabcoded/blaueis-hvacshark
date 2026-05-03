@@ -69,12 +69,12 @@ protocols/
     analysis/           Special function deep-dives
 ```
 
-## Companion repository: HVAC-shark-dumps
+## Companion repository: blaueis-hvacshark-traces
 
 Capture sessions, raw logic-analyser exports, and session documentation live in a
 separate repository to keep binary data out of the main codebase:
 
-**[HVAC-shark-dumps](https://github.com/fabcoded/HVAC-shark-dumps)**
+**[blaueis-hvacshark-traces](https://github.com/fabcoded/blaueis-hvacshark-traces)**
 
 Contents:
 - `.pcap` files converted from Saleae logic-analyser exports, ready to open in Wireshark

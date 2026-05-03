@@ -26,8 +26,8 @@ regardless of transport.
 |----------|-------|
 | Unit | Midea XtremeSaveBlue (Q11 platform) |
 | Indoor model | MSAGBU-09HRFN8-QRD0GW |
-| Capture tool | HVAC-shark ESP32 RS-485 sniffer (passive, receive-only) |
-| Own captures | `HVAC-shark-dumps` repository (Sessions 1-9) |
+| Capture tool | blaueis-hvacshark ESP32 RS-485 sniffer (passive, receive-only) |
+| Own captures | `blaueis-hvacshark-traces` repository (Sessions 1-9) |
 
 ### 1.2 Confidence Labels
 
@@ -2196,7 +2196,7 @@ Byte 12: 0x48 = cool(2<<5) | (24-16=8)
 Byte 13: 0x66 = fan_auto(102)
 XX = msg_id, YY = CRC8, ZZ = checksum
 
-For frame examples covering individual MSG_TYPE and body[0] combinations, see the per-session `findings.md` files under `HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session N/`.
+For frame examples covering individual MSG_TYPE and body[0] combinations, see the per-session `findings.md` files under `blaueis-hvacshark-traces/Midea-XtremeSaveBlue-logicanalyzer/Session N/`.
 
 ---
 

@@ -26,7 +26,7 @@ Usage::
     python passive_capture.py \\
         --gateway ws://192.168.210.30:8765 \\
         --psk-file /tmp/blaueis_psk \\
-        --output-dir ../../HVAC-shark-dumps/passive_capture_s1 \\
+        --output-dir ../../blaueis-hvacshark-traces/passive_capture_s1 \\
         --duration 360
 
 The script writes ``capture.jsonl`` continuously while running, then
@@ -52,7 +52,7 @@ def _resolve_blaueis_lib(arg_value: str | None) -> Path:
     """Resolve the blaueis-libmidea source path.
 
     Default is sibling-checkout layout
-    (``HVAC-shark/`` and ``blaueis-libmidea/`` next to each other).
+    (``blaueis-hvacshark/`` and ``blaueis-libmidea/`` next to each other).
     Validate by checking that ``blaueis/core/frame.py`` exists at the
     resolved path so the failure is surfaced early with a clear message
     rather than as a cryptic ImportError later.
@@ -60,7 +60,7 @@ def _resolve_blaueis_lib(arg_value: str | None) -> Path:
     if arg_value:
         p = Path(arg_value).expanduser().resolve()
     else:
-        # script lives at HVAC-shark/tools/capture/passive_capture.py
+        # script lives at blaueis-hvacshark/tools/capture/passive_capture.py
         # default sibling: ../../../blaueis-libmidea/packages/blaueis-core/src
         p = (
             Path(__file__).resolve().parent.parent.parent.parent
@@ -108,11 +108,11 @@ def _build_eth_ip_udp(ts_sec: float, payload: bytes) -> tuple[bytes, bytes]:
 
     Returns ``(pcap_record_header, packet_bytes)``. The packet uses
     locally-administered MAC sources, the gateway's IP as IPv4 src, and
-    the broadcast IP as dst — the existing HVAC-shark dumps use the
+    the broadcast IP as dst — the existing blaueis-hvacshark dumps use the
     same broadcast pattern. UDP src/dst port 22222 is what the
     dissector hooks.
     """
-    # Ethernet — broadcast (matches existing HVAC-shark pcap convention)
+    # Ethernet — broadcast (matches existing blaueis-hvacshark pcap convention)
     eth_dst = b"\xff\xff\xff\xff\xff\xff"
     eth_src = b"\x02\x00\x00\x00\x00\x01"  # locally-administered
     eth_type = struct.pack("!H", 0x0800)  # IPv4
@@ -199,7 +199,7 @@ def jsonl_to_pcap(jsonl_path: Path, pcap_path: Path) -> int:
 def verify_with_tshark(pcap_path: Path, dissector_path: Path | None) -> tuple[bool, str]:
     """Run tshark on the pcap, return (ok, summary).
 
-    Strategy: rely on a system-installed copy of the HVAC-shark
+    Strategy: rely on a system-installed copy of the blaueis-hvacshark
     dissector (Wireshark's plugins dir), since loading the same
     dissector twice via ``-X lua_script:`` errors with "two protocols
     with the same description". Only fall back to ``-X`` if the system
@@ -228,7 +228,7 @@ def verify_with_tshark(pcap_path: Path, dissector_path: Path | None) -> tuple[bo
             out = r.stdout
         if "HVAC Shark Protocol Data" not in out:
             return False, (
-                "HVAC-shark dissector did not run — install it as a "
+                "blaueis-hvacshark dissector did not run — install it as a "
                 "Wireshark plugin or pass --dissector PATH (and ensure "
                 "no duplicate system plugin shadows it)"
             )

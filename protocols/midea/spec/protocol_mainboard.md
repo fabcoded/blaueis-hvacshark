@@ -1,7 +1,7 @@
 # Midea HVAC Display–Mainboard Internal Bus Protocol
 
 > **Source Status — Own Hardware Observations Only**
-> This document is based exclusively on own hardware captures from the `HVAC-shark-dumps`
+> This document is based exclusively on own hardware captures from the `blaueis-hvacshark-traces`
 > repository (Midea XtremeSaveBlue display board, logic-analyser sessions). No external
 > reference or official specification is known for this bus.
 >
@@ -482,7 +482,7 @@ data was captured. The UART A1 heartbeat provides the reference temperatures nee
    Ensure a polling agent (e.g. via Home Assistant integration) is running so the
    mainboard sends periodic A1 heartbeat responses.
 
-2. **All 4 buses captured simultaneously**: HVAC-shark must sniff disp-mainboard (bus 0x02),
+2. **All 4 buses captured simultaneously**: blaueis-hvacshark must sniff disp-mainboard (bus 0x02),
    UART (bus 0x01), R/T (bus 0x03), and optionally XYE. The key is having UART A1 and
    MB AA30 in the same capture for time-matched correlation.
 

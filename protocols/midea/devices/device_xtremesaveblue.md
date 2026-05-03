@@ -5,7 +5,7 @@
 > may behave differently.
 
 For the generic serial protocol, see [serial_protocol.md](serial_protocol.md).
-For capture sessions, see the `HVAC-shark-dumps` repository.
+For capture sessions, see the `blaueis-hvacshark-traces` repository.
 
 ---
 

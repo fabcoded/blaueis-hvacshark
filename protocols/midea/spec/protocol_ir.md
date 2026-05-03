@@ -2,7 +2,7 @@
 
 > **Source Status — Own Hardware Observations + Community Cross-Reference (Partial)**
 >
-> Primary source: own hardware captures from the `HVAC-shark-dumps` repository
+> Primary source: own hardware captures from the `blaueis-hvacshark-traces` repository
 > (Midea extremeSaveBlue display board, Session 2 logic-analyser captures).
 > Cross-referenced against `IRremoteESP8266` (crankyoldgit) and `ESPHome` midea component.
 >
@@ -446,10 +446,10 @@ than the AC's target setpoint. **Further investigation needed.**
 
 ## References
 
-- Own hardware captures: HVAC-shark-dumps repository (Midea XtremeSaveBlue, Sessions 2 and 10)
-- Session 2 notes: [SessionNotes.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%202/SessionNotes.md)
-- Session 2 findings: [findings.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%202/findings.md)
-- Session 10 findings (C/F analysis): [findings.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%2010/findings.md)
+- Own hardware captures: blaueis-hvacshark-traces repository (Midea XtremeSaveBlue, Sessions 2 and 10)
+- Session 2 notes: [SessionNotes.md](../../../../blaueis-hvacshark-traces/Midea-XtremeSaveBlue-logicanalyzer/Session%202/SessionNotes.md)
+- Session 2 findings: [findings.md](../../../../blaueis-hvacshark-traces/Midea-XtremeSaveBlue-logicanalyzer/Session%202/findings.md)
+- Session 10 findings (C/F analysis): [findings.md](../../../../blaueis-hvacshark-traces/Midea-XtremeSaveBlue-logicanalyzer/Session%2010/findings.md)
 - crankyoldgit/IRremoteESP8266 — `src/ir_Midea.h`, `src/ir_Midea.cpp`
 - ESPHome midea component — `esphome/components/midea/ir_transmitter.h`
 - IRremoteESP8266 protocol spreadsheet: https://docs.google.com/spreadsheets/d/1TZh4jWrx4h9zzpYUI9aYXMl1fYOiqu-xVuOOMqagxrs/

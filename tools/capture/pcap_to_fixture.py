@@ -1,4 +1,4 @@
-"""Extract blaueis test-fixture YAML from an HVAC-shark PCAP.
+"""Extract blaueis test-fixture YAML from an blaueis-hvacshark PCAP.
 
 Reads a PCAP captured by ``passive_capture.py`` (Ethernet/IP/UDP/HVAC_shark
 encapsulation), filters frames by type/group, and writes a YAML
@@ -8,7 +8,7 @@ fixture in the format the codec tests expect (see existing
 Usage::
 
     python pcap_to_fixture.py \\
-        --pcap ../../HVAC-shark-dumps/passive_capture_s1/capture.pcap \\
+        --pcap ../../blaueis-hvacshark-traces/passive_capture_s1/capture.pcap \\
         --frame-filter c1_group1 \\
         --device "Atelier Midea (cap 0x16=4)" \\
         --out /path/to/blaueis-libmidea/.../tests/test-cases/passive_capture_s1/c1g1_frames.yaml
@@ -135,8 +135,8 @@ def write_fixture(
     out_path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
         f"# Real {frame_filter.upper()} frames — {device}",
-        "# Captured passively via HVAC-shark/tools/capture/passive_capture.py",
-        "# Source pcap: HVAC-shark-dumps/passive_capture_s1/capture.pcap",
+        "# Captured passively via blaueis-hvacshark/tools/capture/passive_capture.py",
+        "# Source pcap: blaueis-hvacshark-traces/passive_capture_s1/capture.pcap",
         "",
         f'device: "{device}"',
         "frames:",

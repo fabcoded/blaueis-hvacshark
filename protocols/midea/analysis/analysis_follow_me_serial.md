@@ -1,9 +1,9 @@
 # Follow Me on the Serial (R/T) Bus — Cross-Bus Analysis
 
 > **Source Status — Own Hardware Observations**
-> Based on logic analyzer captures from the `HVAC-shark-dumps` repository
+> Based on logic analyzer captures from the `blaueis-hvacshark-traces` repository
 > (Midea-XtremeSaveBlue-logicanalyzer Sessions 3–9). All findings verified
-> with tshark + HVAC-shark Lua dissector against CRC-valid frames only.
+> with tshark + blaueis-hvacshark Lua dissector against CRC-valid frames only.
 
 ## 1. Summary
 

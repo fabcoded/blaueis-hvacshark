@@ -14,7 +14,7 @@ Protocol knowledge in this repo is documented as **our own observation of the wi
 - Reference file paths, function names, or line numbers from external implementations in spec files, analysis docs, dissector comments, or code.
 - Copy content from external source code — comments, variable names, logic blocks.
 
-A single README-level acknowledgment line naming community projects (see [README.md#acknowledgements](README.md#acknowledgements)) is the only named attribution in this repo. All protocol claims must trace to captures we have in [HVAC-shark-dumps](https://github.com/fabcoded/HVAC-shark-dumps) or to our own wire observations.
+A single README-level acknowledgment line naming community projects (see [README.md#acknowledgements](README.md#acknowledgements)) is the only named attribution in this repo. All protocol claims must trace to captures we have in [blaueis-hvacshark-traces](https://github.com/fabcoded/blaueis-hvacshark-traces) or to our own wire observations.
 
 ## Where things live
 
@@ -27,7 +27,7 @@ A single README-level acknowledgment line naming community projects (see [README
 ## Adding a new protocol or device
 
 1. File an issue describing the manufacturer, bus/protocol, and what captures you have.
-2. Add captures to [HVAC-shark-dumps](https://github.com/fabcoded/HVAC-shark-dumps) first (or reference existing ones).
+2. Add captures to [blaueis-hvacshark-traces](https://github.com/fabcoded/blaueis-hvacshark-traces) first (or reference existing ones).
 3. Draft a spec file — start with `Hypothesis` / `Unknown` confidence; don't mark anything `Confirmed` without round-trip evidence.
 4. Dissector support can follow the spec; it doesn't have to land together.
 

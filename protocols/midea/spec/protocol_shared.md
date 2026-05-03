@@ -3,7 +3,7 @@
 > **Source Status — Own Hardware Observations and Community Sources**
 > This document summarises protocol elements that appear **identically or analogously
 > across two or more Midea communication buses**. Every entry has been confirmed on at
-> least one bus through own hardware captures (see `HVAC-shark-dumps` repository).
+> least one bus through own hardware captures (see `blaueis-hvacshark-traces` repository).
 > Bus-specific details are kept in the individual protocol references:
 >
 > - [protocol_uart.md](protocol_uart.md) — Wi-Fi dongle / SmartKey (UART, 9600 bps)

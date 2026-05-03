@@ -28,9 +28,9 @@ hardware verification.
 | Indoor model | MSAGBU-09HRFN8-QRD0GW |
 | Capture point | CN3 connector on display board (UART TXD/RXD) |
 | Baud rate | 9600 bps, 8N1 |
-| Capture tool | HVAC-shark ESP32 RS-485 sniffer (passive, receive-only) |
+| Capture tool | blaueis-hvacshark ESP32 RS-485 sniffer (passive, receive-only) |
 
-Own captures are from the `HVAC-shark-dumps` repository (Midea XtremeSaveBlue
+Own captures are from the `blaueis-hvacshark-traces` repository (Midea XtremeSaveBlue
 display board, logic-analyser sessions 1-9).
 
 ### 1.3 Packet Source / Target
@@ -82,7 +82,7 @@ This document covers only the UART transport framing.
 | `yitsushi/midea-air-condition` | Ruby | Low | Niche, likely unmaintained. Basic consistency check only |
 | community protocol research | Python | High | Fork with advanced documentation; see community protocol research for extracted findings (Findings 1-14) |
 | community protocol research | — | High | UART protocol reference: MSG_TYPE behavior, boot sequence, body handling  |
-| **Own hardware captures** | — | Sessions 1-9 | HVAC-shark-dumps repository, logic-analyser sessions |
+| **Own hardware captures** | — | Sessions 1-9 | blaueis-hvacshark-traces repository, logic-analyser sessions |
 
 ### 2.2 Confidence Labels
 
@@ -287,7 +287,7 @@ Byte-level analysis reveals **two distinct mechanisms**:
 **True echo (identical bytes, 50–60 ms delay):**
 Heartbeat ACK and Capabilities frames appear first on wifiOrange (fromACdisplay),
 then 50–60 ms later on wifiBrown (toACdisplay) with **identical raw bytes** (p50 ≈ 57 ms,
-hard ceiling ~60 ms — see `HVAC-shark-dumps/data-analysis/midea/uart/timing-analysis.md §4`).
+hard ceiling ~60 ms — see `blaueis-hvacshark-traces/data-analysis/midea/uart/timing-analysis.md §4`).
 The AC mainboard sends the frame through the display to the dongle; the dongle
 retransmits the exact same frame back as an acknowledgment.
 

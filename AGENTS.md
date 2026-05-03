@@ -1,4 +1,4 @@
-# AGENTS.md — HVAC-shark *(migrating → `blaueis-hvacshark/`)*
+# AGENTS.md — blaueis-hvacshark *(migrating → `blaueis-hvacshark/`)*
 
 Wireshark Lua dissector, live-capture dongle (ESP32 + Python bridge), and protocol specifications for HVAC and heat-pump systems. Multi-manufacturer, multi-protocol by design — the same physical interface may carry different wire protocols across device models or firmware generations; each variant is treated as a distinct protocol.
 
@@ -13,7 +13,7 @@ Lua dissector: unlinted today (stylua deferred).
 python3 -m pytest
 ```
 
-Most validation is manual against pcap captures and `SessionNotes.md` ground truth in the `HVAC-shark-dumps/` data repo.
+Most validation is manual against pcap captures and `SessionNotes.md` ground truth in the `blaueis-hvacshark-traces/` data repo.
 
 ## Behavior
 

@@ -1,7 +1,7 @@
 # Midea R/T Bus Protocol Reference
 
 > **Source Status — Own Hardware Observations Only**
-> Based entirely on own hardware captures from the `HVAC-shark-dumps` repository
+> Based entirely on own hardware captures from the `blaueis-hvacshark-traces` repository
 > (Midea XtremeSaveBlue, display-board tap, Session 1 of the logic-analyzer
 > series). No community reference for this specific bus was found. No official
 > Midea specification is publicly available. Confidence levels are stated
@@ -197,7 +197,7 @@ Requests are 0xAA frames (bus adapter → display), responses are 0x55 frames
 
 ## References
 
-- Own hardware captures: HVAC-shark-dumps repository (Midea XtremeSaveBlue, Session 1 logic-analyzer)
-- Session findings: [findings.md](../../../../HVAC-shark-dumps/Midea-XtremeSaveBlue-logicanalyzer/Session%201/findings.md)
+- Own hardware captures: blaueis-hvacshark-traces repository (Midea XtremeSaveBlue, Session 1 logic-analyzer)
+- Session findings: [findings.md](../../../../blaueis-hvacshark-traces/Midea-XtremeSaveBlue-logicanalyzer/Session%201/findings.md)
 - Serial protocol (shared command set): [serial_protocol.md](serial_protocol.md)
 - UART transport framing: [protocol_uart.md](protocol_uart.md)

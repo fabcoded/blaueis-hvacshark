@@ -206,8 +206,10 @@ Confirmed data points from Sessions 2 and 12:
 | `0x9C`  | 4         | 24 deg C | S2      | Stepped down              |
 | `0xCC`  | 6         | 26 deg C | S2      | Stepped up twice          |
 
-Confirmed range: 21–26 deg C (bits 1–6). Bits 0 (20 deg C) and 7 (27 deg C)
-not yet observed.
+Confirmed range: 21–26 deg C (values 1–6). Value 0 (20 deg C) has not been
+observed. Value 7 (27 deg C) appears in S13 frames (byte[4]=0xE4/0xE0 on
+mode-switch/power presses) but with no operator ground truth for the setpoint,
+so it remains unconfirmed.
 
 > **Potential discrepancy vs IRremoteESP8266**: IRremoteESP8266 documents a temperature
 > range of 17–30 deg C (with 5-bit field, `Temp:5`, offset 17). Our 3-bit field
@@ -388,24 +390,30 @@ exact formula is not yet confirmed.
 
 ## 7. Open Questions
 
-### 7.1 byte[4] bit[4] — feature flag, not swing?
+### 7.1 byte[4] bit[4] — toggle/parity bit: Consistent → Confirmed upgrade
 
-Bit 4 was already set at session start without a swing press. IRremoteESP8266 uses
-a Special-type frame for swing toggle (not a state bit), weakening the swing hypothesis.
+Swing is ruled out (§5.1/§6: S12 shows it toggling 0/1 at the same temperature,
+and Session 12 findings conclude it is NOT a swing state bit; IRremoteESP8266
+uses a Special-type frame for swing, not a state bit). What remains is upgrading
+the toggle/parity identification from Consistent to Confirmed.
 
 **To resolve**: capture a session toggling vertical swing ON and OFF with no other changes.
 
 ### 7.2 byte[2] bit layout — mode, fan speed, power
 
-Only `0xBF` (Heat + Auto fan) observed. Fan speed encoding conflicts with
-IRremoteESP8266 (our Auto=11 vs IRremoteESP8266 Auto=00).
+Four values observed so far (`0xBF`/`0xFF`/`0x1F`/`0x7B`, S13 — power bit and
+Heat/Auto bits identified in §5.1), but no Cool/Dry/Fan-only or non-Auto fan
+sweep yet. Fan speed encoding conflicts with IRremoteESP8266 (our Auto=11 vs
+IRremoteESP8266 Auto=00).
 
 **To resolve**: capture with Cool, Dry, Fan-only modes and with Auto/High/Medium/Low fan.
 
-### 7.3 Temperature range below 22 deg C and above 26 deg C
+### 7.3 Temperature range below 21 deg C and above 26 deg C
 
-Confirmed for 22, 24, 26 deg C. IRremoteESP8266 documents 17–30 deg C but uses
-a different format. Whether our formula extends to 17 deg C is unknown.
+Confirmed for 21–26 deg C (six data points, §5.1). IRremoteESP8266 documents
+17–30 deg C but uses a different format. Whether our formula extends below 21
+or above 26 deg C is unconfirmed (a value-7 bit pattern appears in S13 frames
+but without operator ground truth — see §5.1).
 
 **To resolve**: set 17 deg C (Midea minimum) and 30 deg C (maximum).
 

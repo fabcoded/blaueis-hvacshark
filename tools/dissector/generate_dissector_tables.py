@@ -37,7 +37,7 @@ if SIBLING_LIB.is_dir():
     sys.path.insert(0, str(SIBLING_LIB))
 
 try:
-    from blaueis.core.codec import build_field_map, load_glossary  # noqa: E402
+    from blaueis.core.codec import build_field_map, load_glossary
 except ImportError:
     print(
         "ERROR: Cannot import blaueis.core.codec.\n"

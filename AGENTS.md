@@ -9,11 +9,7 @@ Lua dissector: unlinted today (stylua deferred).
 
 ## Tests
 
-```sh
-python3 -m pytest
-```
-
-Most validation is manual against pcap captures and `SessionNotes.md` ground truth in the `blaueis-hvacshark-traces/` data repo.
+No automated test suite yet — validation is manual against pcap captures and `SessionNotes.md` ground truth in the `blaueis-hvacshark-traces/` data repo. (The generated dissector tables can additionally be exercised from the library side: blaueis-libmidea's `test_dissector_gen.py` checks the injected glossary tables when pointed at this repo's `tools/dissector/` via `BLAUEIS_DISSECTOR_DIR`.)
 
 ## Behavior
 

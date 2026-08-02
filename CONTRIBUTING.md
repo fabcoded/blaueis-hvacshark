@@ -24,6 +24,17 @@ A single README-level acknowledgment line naming community projects (see [README
 - `tools/dissector/` — Wireshark Lua dissectors.
 - `tools/dongle/` — ESP32 + Python live-capture bridge.
 
+## Development setup
+
+Install the git hooks once after cloning. They check YAML and JSON validity, normalise whitespace, and run ruff over the Python tooling:
+
+```sh
+pip install pre-commit   # if you don't already have it
+pre-commit install
+```
+
+The ruff configuration lives in `pyproject.toml`; the pinned version is in `.pre-commit-config.yaml`. Keep the two in sync when bumping.
+
 ## Adding a new protocol or device
 
 1. File an issue describing the manufacturer, bus/protocol, and what captures you have.

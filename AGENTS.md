@@ -31,3 +31,40 @@ No automated test suite yet — validation is manual against pcap captures and `
 - Follow the terms and licence of each source; check them before and after each use.
 
 Protocol specs, device-specific observations, and cross-protocol analyses live in `protocols/<manufacturer>/{spec,devices,analysis}/`. Capture framing constants and tools live in `tools/`.
+
+## Code knowledge graph (optional)
+
+An optional [graphify](https://github.com/Graphify-Labs/graphify) index of this
+repo may exist under `graphify-out/` (gitignored, never committed). Nothing here
+depends on it — build, tests and CI are unaffected when it is absent.
+
+It is **never rebuilt automatically**; no git hook triggers it, because a rebuild
+is minutes of disk work. So it goes stale as you commit. **Check first:**
+
+```sh
+./tools/graph_refresh.sh --status   # instant; says POTENTIALLY OUT OF DATE when behind
+./tools/graph_refresh.sh            # rebuild (minutes)
+```
+
+`--status` compares the commit the graph was built from against `HEAD`, so the
+answer is exact rather than a cached marker that can itself go stale.
+
+**Query it:**
+
+```sh
+graphify query "how does X work" --graph graphify-out/graph.json
+graphify explain "SymbolName"    --graph graphify-out/graph.json
+graphify god-nodes               --graph graphify-out/graph.json
+```
+
+**Blind spots — never read absence from the graph as absence in the source.**
+It is a navigation aid, not an authority:
+
+- **YAML contributes zero nodes.** graphify ships no YAML extractor despite its
+  docs listing one, so `.yaml`/`.yml` files are invisible.
+- **JavaScript function *expressions* are skipped.** It indexes
+  `function_declaration` and ignores `function_expression`, so code written in
+  the object-literal module style is heavily under-represented.
+
+If a symbol is not in the graph, confirm against the source before concluding
+anything. Treat a hit as a pointer worth following, not as proof.

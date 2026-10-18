@@ -14,7 +14,7 @@ traffic without injecting probes.
 
 ```bash
 python passive_capture.py \
-    --gateway ws://192.168.210.30:8765 \
+    --gateway ws://<gateway-ip>:8765 \
     --psk-file /tmp/blaueis_psk \
     --output-dir ../../blaueis-hvacshark-traces/passive_capture_s1 \
     --duration 420
@@ -43,7 +43,7 @@ python pcap_to_fixture.py \
     --pcap ../../blaueis-hvacshark-traces/passive_capture_s1/capture.pcap \
     --frame-filter c1_group1 \
     --device "Atelier Midea" \
-    --out /workspaces/hvac-shark-dev/blaueis-libmidea/.../tests/test-cases/passive_capture_s1/c1g1_frames.yaml
+    --out <libmidea>/packages/blaueis-core/tests/test-cases/passive_capture_s1/c1g1_frames.yaml
 ```
 
 `--out` is required and explicit — no hidden writes into other repos.
@@ -51,15 +51,18 @@ The `--device` label goes into the fixture YAML; use the product-line
 label or the deployment label, not internal model codes (per
 `feedback_device_identity_is_caps`).
 
-## `--blaueis-lib` argument (both scripts)
+## Dependencies
 
-Both scripts cross-import `blaueis.core` for handshake/parse helpers.
-They default to a sibling-checkout layout
-(`../../../blaueis-libmidea/packages/blaueis-core/src` from this
-directory). Override with `--blaueis-lib PATH` if your layout differs.
-The path is validated by checking that `blaueis/core/frame.py` exists
-inside it, so misconfiguration fails loudly with a clear message
-rather than as an `ImportError`.
+Both scripts import `blaueis.core` (handshake and frame parsing) from the
+`blaueis-core` package on PyPI:
+
+```bash
+pip install -r tools/requirements.txt
+```
+
+To try an unreleased library change, install a local blaueis-libmidea
+checkout over it in your own environment
+(`pip install -e <libmidea>/packages/blaueis-core`).
 
 ## Layout convention
 

@@ -21,35 +21,16 @@ Frame filters:
   b5           — 0xB5 capability responses
   all          — every frame in the pcap
 
-Cross-project library use: ``--blaueis-lib`` defaults to a sibling
-checkout, override if needed. Library is used here only to import
-``parse_frame`` for body extraction (the same parser the codec tests
-use), so fixtures end up shaped exactly like decoded test data.
+Dependencies: ``pip install -r tools/requirements.txt``. blaueis-core is
+used only for ``parse_frame`` (the same parser the codec tests use), so
+fixtures end up shaped exactly like decoded test data.
 """
 
 from __future__ import annotations
 
 import argparse
 import struct
-import sys
 from pathlib import Path
-
-
-def _resolve_blaueis_lib(arg_value: str | None) -> Path:
-    if arg_value:
-        p = Path(arg_value).expanduser().resolve()
-    else:
-        p = (
-            Path(__file__).resolve().parent.parent.parent.parent
-            / "blaueis-libmidea"
-            / "packages"
-            / "blaueis-core"
-            / "src"
-        )
-    if not (p / "blaueis" / "core" / "frame.py").is_file():
-        raise SystemExit(f"ERROR: --blaueis-lib path does not contain blaueis/core/frame.py: {p}")
-    return p
-
 
 # ── PCAP reader (matches the writer in passive_capture.py) ─────────────
 
@@ -163,11 +144,8 @@ def main():
     )
     parser.add_argument("--device", required=True, help="device label for the fixture YAML")
     parser.add_argument("--out", required=True, help="output YAML path")
-    parser.add_argument("--blaueis-lib", default=None, help="path to blaueis-core/src (default: sibling checkout)")
     args = parser.parse_args()
 
-    blaueis_lib = _resolve_blaueis_lib(args.blaueis_lib)
-    sys.path.insert(0, str(blaueis_lib))
     from blaueis.core.frame import parse_frame
 
     pcap = Path(args.pcap).expanduser().resolve()

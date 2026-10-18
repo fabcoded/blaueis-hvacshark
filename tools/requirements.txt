@@ -1,0 +1,6 @@
+# Python dependencies of the capture tools and the dissector table generator.
+# To work against an unreleased blaueis-libmidea checkout instead, install it
+# over this in your own environment (never commit a path here):
+#   pip install -e <libmidea>/packages/blaueis-core
+blaueis-core~=0.1.0rc2
+websockets>=12.0

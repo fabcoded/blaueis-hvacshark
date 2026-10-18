@@ -16,15 +16,13 @@ Output:
                            the tools/dissector/HVAC-shark_mid-xye.lua
                            Wireshark dissector.
 
-Cross-project library use: imports blaueis.core.crypto via a sys.path
-prepend. By default looks for blaueis-libmidea as a sibling checkout;
-override with --blaueis-lib if it lives elsewhere. No pip-install
-required — works on any layout that has the source tree present.
+Dependencies: ``pip install -r tools/requirements.txt`` (blaueis-core for
+the session handshake, websockets).
 
 Usage::
 
     python passive_capture.py \\
-        --gateway ws://192.168.210.30:8765 \\
+        --gateway ws://<gateway-ip>:8765 \\
         --psk-file /tmp/blaueis_psk \\
         --output-dir ../../blaueis-hvacshark-traces/passive_capture_s1 \\
         --duration 360
@@ -44,38 +42,6 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-
-# ── Cross-project import of blaueis-libmidea ───────────────────────────
-
-
-def _resolve_blaueis_lib(arg_value: str | None) -> Path:
-    """Resolve the blaueis-libmidea source path.
-
-    Default is sibling-checkout layout
-    (``blaueis-hvacshark/`` and ``blaueis-libmidea/`` next to each other).
-    Validate by checking that ``blaueis/core/frame.py`` exists at the
-    resolved path so the failure is surfaced early with a clear message
-    rather than as a cryptic ImportError later.
-    """
-    if arg_value:
-        p = Path(arg_value).expanduser().resolve()
-    else:
-        # script lives at blaueis-hvacshark/tools/capture/passive_capture.py
-        # default sibling: ../../../blaueis-libmidea/packages/blaueis-core/src
-        p = (
-            Path(__file__).resolve().parent.parent.parent.parent
-            / "blaueis-libmidea"
-            / "packages"
-            / "blaueis-core"
-            / "src"
-        )
-    if not (p / "blaueis" / "core" / "frame.py").is_file():
-        raise SystemExit(
-            f"ERROR: --blaueis-lib path does not contain blaueis/core/frame.py: {p}\n"
-            "       Pass --blaueis-lib pointing at <repo>/packages/blaueis-core/src"
-        )
-    return p
-
 
 # ── PCAP writer (no scapy required for the simple wrap) ────────────────
 
@@ -256,8 +222,6 @@ def verify_with_tshark(pcap_path: Path, dissector_path: Path | None) -> tuple[bo
 async def capture_loop(args, jsonl_out):
     """Connect, handshake, stream frames into ``jsonl_out`` until duration elapses."""
     import websockets
-
-    # Defer the blaueis import until after sys.path is populated.
     from blaueis.core.crypto import (
         complete_handshake_client,
         create_hello,
@@ -310,16 +274,11 @@ def main():
     parser.add_argument("--psk-file", required=True, help="path to a file containing the PSK (single line)")
     parser.add_argument("--output-dir", required=True, help="directory to write capture.jsonl + capture.pcap")
     parser.add_argument("--duration", type=int, default=300, help="capture duration in seconds (default: 300)")
-    parser.add_argument("--blaueis-lib", default=None, help="path to blaueis-core/src (default: sibling checkout)")
     parser.add_argument(
         "--dissector", default=None, help="path to HVAC-shark_mid-xye.lua (default: sibling tools/dissector)"
     )
     parser.add_argument("--skip-tshark", action="store_true", help="skip the post-capture tshark verification step")
     args = parser.parse_args()
-
-    # Resolve and inject the blaueis-libmidea source path.
-    blaueis_lib = _resolve_blaueis_lib(args.blaueis_lib)
-    sys.path.insert(0, str(blaueis_lib))
 
     out_dir = Path(args.output_dir).expanduser().resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -327,7 +286,6 @@ def main():
     pcap_path = out_dir / "capture.pcap"
 
     print(f"[capture] writing to {out_dir}")
-    print(f"[capture] blaueis lib: {blaueis_lib}")
 
     # Capture
     with open(jsonl_path, "w", encoding="utf-8") as jsonl_out:

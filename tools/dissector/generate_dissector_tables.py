@@ -21,28 +21,17 @@ import textwrap
 from datetime import date
 from pathlib import Path
 
-# Resolve paths — the glossary and codec live in blaueis-libmidea,
-# expected to be checked out as a sibling of this repo:
-#   some-dir/
-#   ├── blaueis-libmidea/
-#   └── blaueis-hvacshark/    (this repo)
-#
-# If blaueis-libmidea is pip-installed, the import works directly.
-# Otherwise, we add the sibling path so it can be found.
+# The glossary and codec come from blaueis-core:
+#   pip install -r tools/requirements.txt
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent.parent
-SIBLING_LIB = REPO_ROOT.parent / "blaueis-libmidea" / "packages" / "blaueis-core" / "src"
-
-if SIBLING_LIB.is_dir():
-    sys.path.insert(0, str(SIBLING_LIB))
 
 try:
     from blaueis.core.codec import build_field_map, load_glossary
 except ImportError:
     print(
         "ERROR: Cannot import blaueis.core.codec.\n"
-        "Either install blaueis-libmidea (pip install -e ../blaueis-libmidea/packages/blaueis-core)\n"
-        "or clone it as a sibling directory of this repo.",
+        "Install the tool dependencies: pip install -r tools/requirements.txt",
         file=sys.stderr,
     )
     sys.exit(1)

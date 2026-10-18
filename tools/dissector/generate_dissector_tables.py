@@ -251,6 +251,10 @@ def emit_b1_property_registry(glossary: dict) -> str:
         lines.append(f'  ["{pid}"] = {{\n')
         for field in fields:
             step = field["decode"][0]
+            # Fields assembled from several data bytes in code (e.g. a minutes +
+            # hours pair) carry no bit range and cannot be expressed in this table.
+            if "bits" not in step:
+                continue
             parts = [
                 f'name="{field["name"]}"',
                 f"offset={step.get('offset', 0)}",
